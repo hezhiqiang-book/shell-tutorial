@@ -4,11 +4,6 @@
 
 ## 目录
 
-* [正则表达式的分类](shell-regex.md#正则表达式的分类)
-* [基本组成部分](shell-regex.md#基本组成部分)
-* [POSIX字符类](shell-regex.md#posix字符类)
-* [元字符](shell-regex.md#元字符)
-
 ## 正则表达式的分类
 
 1. 基本的正则表达式（Basic Regular Expression 又叫Basic RegEx 简称BREs）
