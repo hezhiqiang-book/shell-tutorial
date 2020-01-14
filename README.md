@@ -8,7 +8,7 @@
 
 建立一个文本文件[demo1](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo1/README.md)，以`.sh`结尾的或者不需要后缀都可以，下面是demo1的内容:
 
-```text
+```bash
 #!/bin/bash
 NUM=10
 printf "输出数字$NUM\n"
@@ -64,7 +64,7 @@ bash demo1
 
 以`#`开头的行就是注释，会被解释器忽略。注释行前面也可以有空白字符。
 
-```text
+```bash
 #--------------------------------------------
 # 这是一个注释
 # author：作者
@@ -77,7 +77,7 @@ echo "A comment will follow." # 这里可以添加注释.
 
 echo命令给出的一个转义的\#字符并不会开始一个注释。同样地，出现在一些参数代换结构和在数值常量表达式中的\#字符也同样不会开始一个注释。
 
-```text
+```bash
 echo "这里的 # 不会被注释"
 echo '这里的 # 不会被注释'
 echo 这里的 \# 不会被注释
@@ -91,7 +91,7 @@ echo $(( 2#101011 ))  # 基本转换，不是注释.
 
 分号`;`命令分割符，分割符允许在同一行里有两个或更多的命令。执行[demo2](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo2/README.md)，会将 demo2 拷贝输出 demo2.bak 。
 
-```text
+```bash
 echo hello; echo there         # 输出 hello 和 there
 filename='demo2'               # 变量
 if [ -x "$filename" ]; then    # 注意："if" and "then"需要分隔符
@@ -106,7 +106,7 @@ fi; echo "File test complete."
 
 双分号`;;`，case语句分支的结束符。[demo3](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo3/README.md)
 
-```text
+```bash
 read Keypress
 case "$Keypress" in
   [[:lower:]]   ) echo "Lowercase letter";;
@@ -154,7 +154,7 @@ drwxr-xr-x  5 kacperwang  staff  170  1 22 13:29 ..
 
 **单引号**
 
-```text
+```bash
 str='this is a string'
 ```
 
@@ -163,7 +163,7 @@ str='this is a string'
 
 **双引号**
 
-```text
+```bash
 your_name='qinjx'
 str="Hello, I know your are \"$your_name\"! \n"
 ```
@@ -175,7 +175,7 @@ str="Hello, I know your are \"$your_name\"! \n"
 
 命令替换"\`"，将会重新分配一个命令甚至是多个命令的输出；它会将命令的输出如实地添加到另一个上下文中。[demo4](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo4/README.md)
 
-```text
+```bash
 script_name=`basename $0`
 echo "The name of this script is $script_name."
 
@@ -186,7 +186,7 @@ echo $textfile_listing
 
 通过这个符号，批量删除文件
 
-```text
+```bash
 rm `cat filename`   # "filename" 包含了需要被删除的文件列表
 # 可能会产生"参数列表太长"的错误
 # 更好的方法是              xargs rm -- < filename 
@@ -199,14 +199,14 @@ rm `cat filename`   # "filename" 包含了需要被删除的文件列表
 
 变量赋值，初始化或改变一个变量的值，通用的变量赋值操作符，可以用于数值和字符串的赋值
 
-```text
+```bash
 var=27
 category=minerals  # "="字符后面不能加空白字符.
 ```
 
 不要把"="赋值操作符和`=`测试操作符搞混了。
 
-```text
+```bash
 # = 用于测试操作符
 if [ "$string1" = "$string2" ]
 # if [ "X$string1" = "X$string2" ] 会更安全,
@@ -224,7 +224,7 @@ fi
 | `+` | 加 | `/` | 除 | `**` | 求幂 |
 | `-` | 减 | `*` | 乘 | `%` | 求模[demo6](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo6/README.md) |
 
-```text
+```bash
 # Bash在版本2.02引入了"**"求幂操作符.
 let "z=5**3"
 echo "z = $z"   # z = 125
@@ -242,7 +242,7 @@ echo "y = $y"   # y = 2
 | `/=` | 除等\(slash-equal\) 把原变量值除以一个常量并重新赋值给变量 |
 | `%=` | 模等\(mod-equal\) 把原变量值除以一个常量整除（即取模）并重新赋余数的值给变量 |
 
-```text
+```bash
 let "var += 5" # 会使变量var值加了5并把值赋给var.
 let "var *= 4" # 使变量var的值乘上4并把值赋给var.
 ```
@@ -267,7 +267,7 @@ let "var *= 4" # 使变量var的值乘上4并把值赋给var.
 | `&` | 位与 | `^` | 位或 |  |
 | `&=` | 位于赋值 | `^=` | 位或赋值 |  |
 
-```text
+```bash
 # <<=
 # "位左移赋值"
 let "var <<= 2" 结果使var的二进制值左移了二位（相当于乘以4）
@@ -277,7 +277,7 @@ let "var <<= 2" 结果使var的二进制值左移了二位（相当于乘以4）
 
 逻辑与`&&`
 
-```text
+```bash
 if [ $condition1 ] && [ $condition2 ]
 # 等同于:  if [ $condition1 -a $condition2 ]
 # 如果condition1和condition2都为真则返回真...
@@ -290,7 +290,7 @@ fi;
 
 逻辑或`||`
 
-```text
+```bash
 if [ $condition1 ] || [ $condition2 ]
 # 等同于:  if [ $condition1 -o $condition2 ]
 # 如果condition1和condition2有一个为真则返回真...
@@ -302,7 +302,7 @@ fi;
 
 使用&&和\|\|进行混合条件测试[demo11](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo11/README.md)。在算术计算的环境中，&&和\|\|操作符也可以使用。
 
-```text
+```bash
 bash$ echo $(( 1 && 2 )) $((3 && 0)) $((4 || 0)) $((0 || 0))
  1 0 1 0
 ```
@@ -311,7 +311,7 @@ bash$ echo $(( 1 && 2 )) $((3 && 0)) $((4 || 0)) $((0 || 0))
 
 逗号`,`操作符连接两个或更多的算术操作。所有的操作都被求值\(可能会有副作用\)，但只返回最后一个操作的结构。[demo5](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo5/README.md)
 
-```text
+```bash
 let "t1 = ((5 + 3, 7 - 1, 15 - 4))"
 echo "t1 = $t1"               # t1 = 11
 
@@ -327,14 +327,14 @@ echo "t2 = $t2    a = $a"     # t2 = 5    a = 9
 
 如果variable1是一个变量的名字，那么$variable1就是引用这个变量的值――即这个变量它包含的数据。[变量赋值与替换例子](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo12/README.md)
 
-```text
+```bash
 t1=12
 echo $t1
 ```
 
 一个未初始化的变量有一个”null”值――表示从没有被赋值过（注意null值不等于零）。在一个变量从未赋值之前就使用它通常会引起问题。然而，仍然有可能在执行算术计算时使用一个未初始化的变量。
 
-```text
+```bash
 echo "$uninitialized"      # (blank line)
 let "uninitialized += 5"   # Add 5 to it.
 echo "$uninitialized"      # 5
@@ -347,7 +347,7 @@ echo "$uninitialized"      # 5
 
 ### 定义变量
 
-```text
+```bash
 # 变量名不加美元符号
 your_var="elaine"
 # 重新定义
@@ -363,7 +363,7 @@ your_var="newname"
 
 ### 只读变量
 
-```text
+```bash
 #!/bin/bash
 github="https://jaywcjlove.github.io"
 readonly github
@@ -375,7 +375,7 @@ github="https://www.github.com"
 
 ### 使用变量
 
-```text
+```bash
 your_var="github"
 echo $your_var
 echo ${your_var}
@@ -386,7 +386,7 @@ echo "your name is ${your_var}-l"
 
 变量被删除后不能再次使用。unset 命令不能删除只读变量。
 
-```text
+```bash
 myUrl="https://jaywcjlove.github.io"
 unset myUrl
 echo $myUrl
@@ -460,7 +460,7 @@ echo $myUrl
 
 **${parameter}**：和$parameter是相同的，都是表示变量parameter的值，可以把变量和字符串连接。
 
-```text
+```bash
 your_id=${USER}-on-${HOSTNAME}
 echo "$your_id"
 #
@@ -471,14 +471,14 @@ echo "New \$PATH = $PATH"
 
 **${parameter-default}, ${parameter:-default}**：如果变量没有被设置，使用默认值。`${parameter-default}`和`${parameter:-default}`几乎是相等的。它们之间的差别是：当一个参数已被声明，但是值是NULL的时候两者不同。
 
-```text
+```bash
 echo ${username-`whoami`}
 # 如果变量$username还没有被设置，则把命令`whoami`的结果赋给该变量
 ```
 
 **${parameter=default}, ${parameter:=default}**：如果变量parameter没有设置，把它设置成默认值。除了引起的当变量被声明且值是空值时有些不同外，两种形式几乎相等。
 
-```text
+```bash
 echo "===== \${parameter+alt_value} ====="
 echo
 
@@ -509,7 +509,7 @@ echo "a = $a"      # a = xyz
 
 **${parameter?err\_msg}, ${parameter:?err\_msg}**：如果变量parameter已经设置，则使用该值，否则打印err\_msg错误信息。[demo20](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo20/README.md)
 
-```text
+```bash
 #!/bin/bash
 # 变量替换和"usage"信息
 
@@ -530,7 +530,7 @@ exit 0  # 仅在命令行参数提供时，才会在这儿退出.
 
 **${\#var}**：字符串长度（即变量$var的字符个数）。对于数组来说，${\#array}是数组的第一个元素的升序。`${#*}和${#@}` 表示位置参数的个数。对于一个数组来说，`${#array[*]}`和`${#array[@]}`表示数组中元素的个数。
 
-```text
+```bash
 E_NO_ARGS=65
 
 if [ $# -eq 0 ]  # 必须要有命令行参数给这个演示程序.
@@ -555,7 +555,7 @@ exit 0
 
 **${var\#Pattern}, ${var\#\#Pattern}**：删除从$var前端开始的最短或最长匹配$Pattern的字符串。[demo22](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo22/README.md)
 
-```text
+```bash
 echo `basename $PWD`        # 当前工作目录的基本名字.
 echo "${PWD##*/}"           # 当前工作目录的基本名字.
 echo
@@ -592,7 +592,7 @@ declare或typeset内建命令\(它们是完全相同的\)可以用来限定变�
 
 假设一个变量的值是第二个变量的名字。这样要如何才能从第一个变量处重新获得第二个变量的值？例如，`a=letter_of_alphabet`和`letter_of_alphabet=z`，是否能由a引用得到z ? 这确实可以办到，这种技术被称为间接引用。
 
-```text
+```bash
 a=letter_of_alphabet   # 变量"a"保存着另外一个变量的名字.
 letter_of_alphabet=z
 # 直接引用.
@@ -608,7 +608,7 @@ exit 0
 
 $RANDOM是Bash的一个返回伪随机整数\(范围为0 - 32767\)的内部函数\(而不是一个常量或变量\)，它不应该用于产生加密的密钥。[demo25](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo25/README.md)
 
-```text
+```bash
 # 模拟掷骰子.
 SPOTS=6   # 模除 6 会产生 0 - 5 之间的值.
           # 结果增1会产生 1 - 6 之间的值.
@@ -634,7 +634,7 @@ exit 0
 
 用`((...))`结构来使用C风格操作符来处理变量。[demo26](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo26/README.md)
 
-```text
+```bash
 (( a = 23 ))  # 以C风格来设置一个值，在"="两边可以有空格.
 echo "a (initial value) = $a"
 
@@ -669,7 +669,7 @@ echo "a (after --a) = $a"
 
 `$?` 变量用于测试脚本中的命令执行结果非常的有用。[demo14](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo14/README.md)
 
-```text
+```bash
 echo hello
 echo $?    # 因为上一条命令执行成功，打印0。
 
@@ -702,7 +702,7 @@ exit 113   # 返回113状态码给shell。
 
 一个if/then结构能包含嵌套的比较和测试。
 
-```text
+```bash
 echo "Testing \"false\""
 if [ "false" ]              #  "false"是一个字符串.
 then
@@ -803,7 +803,7 @@ Bash已经支持了令人惊讶的字符串操作的数量。不一致的命令�
 
 ### 字符串长度
 
-```text
+```bash
 String=abcABC123ABCabc
 
 echo ${#String}                 # 15
@@ -816,7 +816,7 @@ echo `expr "$String" : '.*'`    # 15
 `expr match "$string" '$substring'`  
 `expr "$string" : '$substring'`
 
-```text
+```bash
 String=abcABC123ABCabc
 #       └------┘
 #       
@@ -828,7 +828,7 @@ echo `expr "$String" : 'abc[A-Z]*.2'`       # 8
 
 `expr index $string $substring` 在字符串$string中$substring第一次出现的数字位置
 
-```text
+```bash
 String=abcABC123ABCabc
 echo `expr index "$String" C12`             # 6
                                              # C 字符的位置.
@@ -842,7 +842,7 @@ echo `expr index "$String" 1c`              # 3
 `${string:position}` 把$string中从第$postion个字符开始字符串提取出来。如果$string是"\*"或"@"，则表示从位置参数中提取第$postion后面的字符串。  
 `${string:position:length}` 把$string中$postion个字符后面的长度为$length的字符串提取出来。[demo18](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo18/README.md)
 
-```text
+```bash
 # 字串提取
 String=abcABC123ABCabc
 #       0123456789.....
@@ -873,7 +873,7 @@ echo ${String: -4}                          # Cabc
 `${string%substring}` 从$string结尾开始，剥去最短匹配$substring子串。  
 `${string%%substring}`从$string结尾开始，剥去最长匹配$substring子串。
 
-```text
+```bash
 String=abcABC123ABCabc
 #       ├----┘     ┆
 #       └----------┘
@@ -900,7 +900,7 @@ echo ${String%%b*c}     # a
 
 Bash脚本可以调用awk的字符串操作功能来代替它自己内建的字符串操作符
 
-```text
+```bash
 String=23skidoo1
 #      012345678    Bash
 #      123456789    awk
@@ -937,7 +937,7 @@ exit 0
 
 循环的一个简单例子
 
-```text
+```bash
 for planet in Mercury Venus Earth Mars Jupiter Saturn Uranus Neptune Pluto
 do
   echo $planet  # 每个行星被单独打印在一行上.
@@ -953,7 +953,7 @@ done
 > command...  
 > done
 
-```text
+```bash
 # --------------------------
 # 简单的while循环
 # --------------------------
@@ -1004,7 +1004,7 @@ exit 0
 
 > until \[condition-is-true\] ; do
 
-```text
+```bash
 END_CONDITION=end
 until [ "$var1" = "$END_CONDITION" ]
 # 在循环的顶部判断条件.
@@ -1021,7 +1021,7 @@ exit 0
 
 嵌套循环就是在一个循环中还有一个循环，内部循环在外部循环体中。[demo28](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo28/README.md)
 
-```text
+```bash
 outer=1             # 设置外部循环计数.
 # 开始外部循环.
 for a in 1 2 3 4 5
@@ -1054,7 +1054,7 @@ exit 0
 
 **continue：** continue命令与break命令类似，只有一点差别，它不会跳出所有循环，仅仅跳出当前循环。
 
-```text
+```bash
 LIMIT=19  # 上限
 
 echo "Printing Numbers 1 through 20 (but not 3 and 11)."
@@ -1076,7 +1076,7 @@ done
 
 下面的例子中，脚本进入死循环直至用户输入数字大于5。要跳出这个循环，返回到shell提示符下，就要使用break命令。
 
-```text
+```bash
 while :
 do
     echo -n "Input a number between 1 to 5: "
@@ -1093,7 +1093,7 @@ done
 
 ⚠️ 在嵌套循环中，break 命令后面还可以跟一个整数，表示跳出第几层循环。例如：
 
-```text
+```bash
 break n #表示跳出第 n 层循环。
 ```
 
@@ -1119,7 +1119,7 @@ case它允许通过判断来选择代码块中多条路径中的一条。它的�
 * 每个条件块都以两个分号结尾`;;`。
 * case块的结束以esac\(case的反向拼写\)结尾。
 
-```text
+```bash
 clear # 清屏.
 
 echo "          我的简历"
@@ -1174,7 +1174,7 @@ select结构是建立菜单的另一种工具，这种结构是从ksh中引入�
 
 用select来创建菜单
 
-```text
+```bash
 PS3='选择你喜欢的蔬菜: ' # 设置提示符字串.
 
 echo
@@ -1191,7 +1191,7 @@ exit 0
 
 如果忽略了in list列表,那么select命令将使用传递到脚本的命令行参数\($@\),或者是函数参数\(当select是在函数中时）与忽略in list时的for语句相比较：**for variable \[in list\]**
 
-```text
+```bash
 PS3='选择你喜欢的蔬菜:  '
 echo
 choice_of(){
@@ -1217,7 +1217,7 @@ exit 0
 
 和"真正的"编程语言一样，Bash也有函数，虽然在某些实现方面稍有些限制。 一个函数是一个子程序，用于实现一串操作的代码块\(code block\)，它是完成特定任务的"黑盒子"。 当有重复代码，当一个任务只需要很少的修改就被重复几次执行时, 这时你应考虑使用函数。 [demo33](https://github.com/hezhiqiang-book/shell-tutorial/tree/34367e8269b44eb05bea8b8ec1486f0bc88e45e4/example/demo33/README.md)
 
-```text
+```bash
 function function_name { 
   command... 
 } 
@@ -1229,7 +1229,7 @@ function_name () {
 
 在一个函数内嵌套另一个函数也是可以的，但是不常用。
 
-```text
+```bash
 f1 (){
   f2 (){ # nested
     echo "Function \"f2\", inside \"f1\"."
@@ -1247,7 +1247,7 @@ f2  #  现在,可以正确的调用"f2"了,
 
 如果变量用local来声明，那么它只能在该变量声明的代码块\(block of code\)中可见，这个代码块就是局部"范围"。
 
-```text
+```bash
 # 在函数内部的全局和局部变量.
 func ()
 {
@@ -1274,7 +1274,7 @@ exit 0
 
 ⚠️ ：在函数调用之前，所有在函数内声明且没有明确声明为local的变量都可在函数体外可见
 
-```text
+```bash
 func (){
   global_var=37    #  在函数还没有被调用前
                    #+ 变量只在函数内可见. 
@@ -1291,7 +1291,7 @@ echo "global_var = $global_var"  # global_var = 37
 
 在Shell中，调用函数时可以向其传递参数。在函数体内部，通过 `$n` 的形式来获取参数的值，例如，$1表示第一个参数，$2表示第二个参数
 
-```text
+```bash
 funWithParam(){
     echo "第一个参数为 $1 !"
     echo "第二个参数为 $2 !"
@@ -1308,7 +1308,7 @@ funWithParam 1 2 3 4 5 6 7 8 9 34 73
 
 定义一个带有return语句的函数。函数返回值在调用该函数后通过 `$?` 来获得。
 
-```text
+```bash
 funWithReturn(){
     echo "这个函数会对输入的两个数字进行相加运算..."
     echo "输入第一个数字: "
